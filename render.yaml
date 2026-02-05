@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: summaro-backend
+    env: node
+    region: oregon  # Optional: fastest for most users
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DEEPGRAM_API_KEY
+        sync: false
+    healthCheckPath: /api/health
+    autoDeploy: true
+    disk:
+      name: uploads
+      mountPath: /opt/render/project/src/uploads
+      sizeGB: 0.5
