@@ -11,7 +11,14 @@ const deepgram = require("@deepgram/sdk");
 
 const app = express();
 
-app.use(cors());
+app.use(cors({
+  origin: [
+    'https://summaro.netlify.app/',  // Your Netlify frontend
+    'http://localhost:5173',                   // Vite dev server
+    'http://localhost:3000'                    // CRA dev server
+  ],
+  credentials: true
+}));
 app.use(express.json());
 
 // Serve static files from React build (when you have it)
